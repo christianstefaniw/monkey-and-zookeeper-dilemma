@@ -1,5 +1,6 @@
 import time
 import pygame
+import re
 
 from monkey_and_zookeeper.monkey import Monkey
 from monkey_and_zookeeper.screen import Screen
@@ -8,7 +9,7 @@ from monkey_and_zookeeper.constants import *
 
 
 class Engine:
-    def __init__(self, gravity):
+    def __init__(self, gravity, refresh_rate):
         self.gravity = gravity
         self.screen = Screen(height=500, width=800, colour=BLACK)
         self.monkey = Monkey(colour=BROWN, width=10, point1={'x': 750, 'y': 0}, point2={'x': 750, 'y': 70},
@@ -16,6 +17,7 @@ class Engine:
         self.banana = Banana(colour=YELLOW, screen=self.screen.screen, x_speed=30, y_speed=18, width=5,
                              point1={'x': 0, 'y': 500},
                              point2={'x': 0, 'y': 480}, gravity_on=gravity)
+        self.refresh_rate = refresh_rate
 
     def out_of_bounds(self):
         if self.monkey.point1['y'] >= 500 and self.gravity:
@@ -38,7 +40,7 @@ class Engine:
 
     @staticmethod
     def change_gravity():
-        gravity_on()
+        settings()
 
     def game_loop(self):
         loop = True
@@ -70,28 +72,37 @@ class Engine:
 
             pygame.display.flip()
 
-            time.sleep(0.05)
+            time.sleep(self.refresh_rate)
 
 
 def del_engine(engine):
     del engine
 
 
-def gravity_on():
+def settings():
     while True:
-        gravity = input("Would you like gravity (y/n)")
-        if gravity.lower() == 'n':
-            gravity = False
-            Engine(gravity=gravity).game_loop()
-            break
+        gravity = input("Would you like gravity (y/n): ")
+        refresh_rate = input("Enter refresh rate: ")
 
-        if gravity.lower() == 'y':
-            gravity = True
-            Engine(gravity=gravity).game_loop()
-            break
+        if re.search('[a-zA-Z]', refresh_rate):
+            print("Enter a number")
+        else:
+            refresh_rate = float(refresh_rate)
+
+            if gravity.lower() == 'n':
+                gravity = False
+                Engine(gravity=gravity, refresh_rate=refresh_rate).game_loop()
+                break
+
+            if gravity.lower() == 'y':
+                gravity = True
+                Engine(gravity=gravity, refresh_rate=refresh_rate).game_loop()
+                break
+
+            print('Enter "y" or "n"')
 
 
 pygame.init()
 
 if __name__ == '__main__':
-    gravity_on()
+    settings()

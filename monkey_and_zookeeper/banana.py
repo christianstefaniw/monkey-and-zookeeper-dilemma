@@ -9,7 +9,6 @@ class Banana:
         self.point1 = point1
         self.point2 = point2
         self.screen = screen
-        self.gravity_speed = 0
         self.width = width
         self.y_speed = y_speed
         self.x_speed = x_speed
