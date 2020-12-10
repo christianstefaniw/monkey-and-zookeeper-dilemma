@@ -5,13 +5,13 @@ We talked about a dilemma related to a zoo keeper trying to feed a monkey in phy
 <br />
 
 Option 1:
- - Turn off gravity (quite unrealistic)
+ - Turn off gravity (quite unrealistic)<br>
  ![No Gravity Demo](https://github.com/ChristianStefaniw/monkey-and-zookeeper-dilemma/blob/master/demo/no_gravity.gif?raw=true)
  
  
  Option 2:
- - Aim the banana launcher at the monkey and fire, both objects will fall at the same time so the banana will hit the monkey on the way down!
- <br>
+ - Aim the banana launcher at the monkey and fire, both objects will fall at the same time so the banana will hit the monkey on the way down! <br>
+ 
  ![Gravity Demo](https://github.com/ChristianStefaniw/monkey-and-zookeeper-dilemma/blob/master/demo/gravity.gif?raw=true)
 
  
