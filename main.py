@@ -70,7 +70,8 @@ class Engine:
                         loop = False
 
             pygame.display.flip()
-            time.sleep(0.1)
+
+            time.sleep(self.refresh_rate)
 
 
 def settings():
